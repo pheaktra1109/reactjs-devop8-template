@@ -3,7 +3,7 @@
   hosts: 
     - worker01
   vars: 
-    image_name: "reactjs-jenkins-nginx:v1.0.0"
+    image_name: "voysopheaktra/reactjs-jenkins-nginx:v0.0.6"
   tasks: 
     - name: Start Reactjs with docker compose
       docker_compose: 
@@ -11,7 +11,7 @@
         definition:
           services:
             reactjs_srv:   
-              image: voysopheaktra/{{ image_name }}
+              image: {{ image_name }}
               container_name: reactjs-new-cont
               ports: 
                 - "3000:80"
