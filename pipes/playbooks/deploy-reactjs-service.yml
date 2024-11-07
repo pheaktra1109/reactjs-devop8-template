@@ -1,7 +1,7 @@
 ---
 - name: Deploy Reactjs Playbook 
   hosts: 
-    - worker02
+    - worker01
   vars: 
     image_name: "reactjs-jenkins-nginx:v1.0.0"
   tasks: 
@@ -11,7 +11,7 @@
         definition:
           services:
             reactjs_srv:   
-              image: 69966/{{ image_name }}
+              image: voysopheaktra/{{ image_name }}
               container_name: reactjs-new-cont
               ports: 
                 - "3000:80"

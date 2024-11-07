@@ -2,9 +2,9 @@
 pipeline{
     agent any 
       environment{
-        TELEGRAM_TOKEN="7830516253:AAHfv7jv7AQSFN63UYJSnJtIIJVQNzVFqvQ"
-        TELEGRAM_CHAT_ID="683081514"
-        IMAGE_NAME="69966/reactjs-jenkins-nginx:v0.0.${BUILD_NUMBER}"
+        TELEGRAM_TOKEN="7763956169:AAEM7AB2Cn9X8zhefVOWW-iqQRGDz6AovBs"
+        TELEGRAM_CHAT_ID="784067371"
+        IMAGE_NAME="voysopheaktra/reactjs-jenkins-nginx:v0.0.${BUILD_NUMBER}"
     }
     stages{
         stage("Scan with Sonarqube "){
@@ -49,8 +49,8 @@ pipeline{
                     echo "Showing all the directory in the workspace " 
                     ls -lrt 
                      # docker compose --build
-                    docker build -t 69966/reactjs-jenkins-nginx:v1.0.0 . 
-                    docker tag 69966/reactjs-jenkins-nginx:v1.0.0 ${IMAGE_NAME}
+                    docker build -t voysopheaktra/reactjs-jenkins-nginx:v1.0.0 . 
+                    docker tag voysopheaktra/reactjs-jenkins-nginx:v1.0.0 ${IMAGE_NAME}
                 """
             }
         }
@@ -78,7 +78,7 @@ pipeline{
             steps{
                 dir("pipes"){
                     sh """
-                    ansible -i inventory.ini worker02 -m ping
+                    ansible -i inventory.ini worker01 -m ping
 
                     ansible-playbook -i inventory.ini \
                         playbooks/deploy-reactjs-service.yml
@@ -93,7 +93,7 @@ pipeline{
                
                 def message = """
                 Congratulations
-                You can access your website here: http://34\\.124\\.236\\.216:3000
+                You can access your website here: http://159\\.223\\.57\\.57:3000
                 """
                 sendTelegramMessage(message,TELEGRAM_TOKEN, TELEGRAM_CHAT_ID)
             }
